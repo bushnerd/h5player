@@ -20,8 +20,11 @@
 // @description:de  Verbessertes Skript für die HTML5-Videowiedergabe, unterstützt alle H5-Videowiedergabewebsites, Tastenkombination in voller Länge, unterstützt: Wiedergabe mit doppelter Geschwindigkeit / beschleunigte Wiedergabe, Video-Screenshots, Bild-in-Bild, ganzseitige Webseite, Helligkeit, Sättigung, Kontrast, benutzerdefinierte Konfigurationsverbesserung Und andere Funktionen.
 // @author       ankvps
 // @icon         https://cdn.jsdelivr.net/gh/xxxily/h5player@master/logo.png
-// @match        http://*/*
-// @match        https://*/*
+// @match        *.bilibili.com/*
+// @match        *.youtube.com/*
+// @match        *zhihuixietong.hecmcc.com:8086/*
+// @match        *iteablue.com/*
+// @match        *edu.51cto.com/*
 // @grant        unsafeWindow
 // @grant        GM_addStyle
 // @grant        GM_setValue
@@ -48,10 +51,11 @@
 // ==/UserScript==
 (function (w) { if (w) { w.name = 'h5player'; } })();
 
+// bushnerd begin
 /* 当前用到的快捷键 */
 const hasUseKey = {
-  keyCodeList: [13, 16, 17, 18, 27, 32, 37, 38, 39, 40, 49, 50, 51, 52, 67, 68, 69, 70, 73, 74, 75, 78, 79, 80, 81, 82, 83, 84, 85, 87, 88, 89, 90, 97, 98, 99, 100, 220],
-  keyList: ['enter', 'shift', 'control', 'alt', 'escape', ' ', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', '1', '2', '3', '4', 'c', 'd', 'e', 'f', 'i', 'j', 'k', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z', '\\', '|'],
+  keyCodeList: [13, 16, 17, 18, 27, 32, 37, 38, 39, 40, 49, 50, 51, 52, 67, 68, 69, 70, 73, 74, 75, 78, 79, 80, 81, 82, 83, 84, 85, 87, 88, 89, 90, 97, 98, 99, 100, 220, 187, 189],
+  keyList: ['enter', 'shift', 'control', 'escape', ' ', 'arrowleft', 'arrowright', '1', '2', '3', '4', 's', '-', '='],
   keyMap: {
     enter: 13,
     shift: 16,
@@ -90,9 +94,12 @@ const hasUseKey = {
     pad2: 98,
     pad3: 99,
     pad4: 100,
-    '\\': 220
+    '\\': 220,
+    '-': 189,
+    '=': 187
   }
 };
+// bushnerd end
 
 /**
  * 判断当前按键是否注册为需要用的按键
@@ -3900,14 +3907,17 @@ async function h5PlayerInit () {
         t.switchPlayStatus();
       }
 
+      // bushnerd begin
       // 按键X：减速播放 -0.1
-      if (keyCode === 88) {
+      if (keyCode === 189) {
         t.setPlaybackRate(player.playbackRate - 0.1);
       }
       // 按键C：加速播放 +0.1
-      if (keyCode === 67) {
+      if (keyCode === 187) {
         t.setPlaybackRate(player.playbackRate + 0.1);
       }
+      // bushnerd end
+
       // 按键Z：正常速度播放
       if (keyCode === 90) {
         t.resetPlaybackRate();
