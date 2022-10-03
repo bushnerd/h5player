@@ -25,6 +25,10 @@
 // @match        *zhihuixietong.hecmcc.com:8086/*
 // @match        *iteablue.com/*
 // @match        *edu.51cto.com/*
+// @match        *.dongchedi.com/video/*
+// @match        *.miguvideo.com/*
+// @match        *.iloveaws.cn/*
+// @match        *.iqiyi.com/*
 // @grant        unsafeWindow
 // @grant        GM_addStyle
 // @grant        GM_setValue
